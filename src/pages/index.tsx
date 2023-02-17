@@ -1,17 +1,22 @@
 import { exit } from "process";
 import { ChangeEvent, useEffect, useState } from "react";
 import TextArea from "./components/TextArea";
+import PullDownSpeacer from "./PullDownSpeacer";
 
 export default function Home() {
-  const [res, setRes]: any = useState();
   const [soundUrl, setSoundUrl]: any = useState();
+  const [speaker,setSpeaker]:any = useState(1)
   // const text: string = "voicevoxのapiを使ったアプリケーションのテストです";
   const [text, setText] = useState<string>("");
   const preset_id: number = 1;
-  const speaker = 1;
+  // const speaker = 1;
   const [creatingSound, setCreatingSound] = useState<boolean>(false);
 
   useEffect(() => {}, []);
+
+  const changeChara = (change:number)=>{
+    setSpeaker(change)
+  }
 
   const genarateAudioQuery = () => {
     setCreatingSound(false);
@@ -135,13 +140,13 @@ export default function Home() {
     setText(e.target.value);
     console.log(text);
   };
-  const propHandlechange = handleChange;
 
   return (
     <>
       <section>
         <div>voicevox web app (仮)</div>
         <div className="inputs">
+        <PullDownSpeacer changeChara={changeChara}></PullDownSpeacer>
           {/* <TextArea Text={setText}></TextArea> */}
           <textarea
             name="text"
