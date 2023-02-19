@@ -18,7 +18,7 @@ yarn dev
 
 yarnをインストールしてない場合は先にインストールを済ませてください
 
-ブラウザの(http://localhost:3000/)[http://localhost:3000/]からアプリが開けます
+ブラウザの[http://localhost:3000/](http://localhost:3000/)からアプリが開けます
 
 ## プロジェクト作成環境
 [Next.js](https://nextjs.org/) の [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)を使って作成されています.
