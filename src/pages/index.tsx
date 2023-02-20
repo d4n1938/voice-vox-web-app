@@ -4,8 +4,8 @@ import TextArea from "./components/TextArea";
 import PullDownSpeacer from "./PullDownSpeacer";
 
 export default function Home() {
-  const [soundUrl, setSoundUrl]: any = useState();
-  const [speaker,setSpeaker]:any = useState(1)
+  const [soundUrl, setSoundUrl] = useState<string>();
+  const [speaker,setSpeaker]= useState<number>(1)
   // const text: string = "voicevoxのapiを使ったアプリケーションのテストです";
   const [text, setText] = useState<string>("");
   const preset_id: number = 1;
@@ -100,8 +100,8 @@ export default function Home() {
     //   .catch((error) => {
     //     console.error(error);
     //   });
-    const link = document.createElement("a");
-    link.href = soundUrl;
+    const link:HTMLAnchorElement = document.createElement("a");
+    link.href = soundUrl!
     link.download = "audio.wav";
     link.click();
   };

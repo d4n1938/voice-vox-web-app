@@ -1,15 +1,20 @@
-const PullDownSpeacer = (props:any) => {
+import { type } from "os"
+import { ReactElement, JSXElementConstructor, ReactFragment, ReactPortal, ChangeEvent } from "react"
+
+const PullDownSpeacer = (props: { changeChara: (arg0: any) => void }) => {
   const speacers = require("../../speakers.json")
 
+  type Speaker = { name: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined }
+
   const pulldown = () => {
-    let list:any = []
-      speacers.map((speaker:any, index:number)=>{
+    let list: JSX.Element[] = []
+      speacers.map((speaker:Speaker , index:number)=>{
         list.push(<option value={index} key={index}>{speaker.name}</option>)
       })
     return list
   }
 
-  const changeChr = (e:any)=> {
+  const changeChr = (e: ChangeEvent<HTMLSelectElement>)=> {
     console.log("e.target.value")
     console.log(e.target.value)
     props.changeChara(speacers[e.target.value]["styles"][0]["id"])
