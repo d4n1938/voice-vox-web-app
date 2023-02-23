@@ -1,22 +1,18 @@
-import { exit } from "process";
 import { ChangeEvent, useEffect, useState } from "react";
-import TextArea from "./components/TextArea";
 import PullDownSpeacer from "./PullDownSpeacer";
 
 export default function Home() {
   const [soundUrl, setSoundUrl] = useState<string>();
-  const [speaker,setSpeaker]= useState<number>(1)
-  // const text: string = "voicevoxのapiを使ったアプリケーションのテストです";
+  const [speaker, setSpeaker] = useState<number>(1);
   const [text, setText] = useState<string>("");
   const preset_id: number = 1;
-  // const speaker = 1;
   const [creatingSound, setCreatingSound] = useState<boolean>(false);
 
   useEffect(() => {}, []);
 
-  const changeChara = (change:number)=>{
-    setSpeaker(change)
-  }
+  const changeChara = (change: number) => {
+    setSpeaker(change);
+  };
 
   const genarateAudioQuery = () => {
     setCreatingSound(false);
@@ -37,7 +33,7 @@ export default function Home() {
       .then((responseJson) => {
         console.log("audio_query_from_preset の成功");
         console.log(responseJson);
-        // setRes(responseJson);
+
         fetch(
           "http://localhost:50021/synthesis?speaker=" +
             speaker +
@@ -72,66 +68,12 @@ export default function Home() {
   };
 
   const downloadWav = () => {
-    // fetch(
-    //   "http://localhost:50021/synthesis?speaker=" +
-    //     speaker +
-    //     "&enable_interrogative_upspeak=true",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       Accept: "audio/wav",
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(res),
-    //   }
-    // )
-    //   .then((response) => {
-    //     console.log("synthesis の成功");
-
-    //     return response.blob();
-    //   })
-    //   .then((blob) => {
-    //     const url = URL.createObjectURL(blob);
-    //     const link = document.createElement("a");
-    //     link.href = url;
-    //     link.download = "audio.wav";
-    //     link.click();
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
-    const link:HTMLAnchorElement = document.createElement("a");
-    link.href = soundUrl!
+    const link: HTMLAnchorElement = document.createElement("a");
+    link.href = soundUrl!;
     link.download = "audio.wav";
     link.click();
   };
   const playAudio = () => {
-    // fetch(
-    //   "http://localhost:50021/synthesis?speaker=" +
-    //     speaker +
-    //     "&enable_interrogative_upspeak=true",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       Accept: "audio/wav",
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(res),
-    //   }
-    // )
-    //   .then((response) => {
-    //     console.log("synthesis の成功");
-
-    //     return response.blob();
-    //   })
-    //   .then((blob) => {
-    //     const url = URL.createObjectURL(blob);
-    //     let sound = new Audio(url);
-    //     sound.play();
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
     let sound = new Audio(soundUrl);
     sound.play();
   };
@@ -146,7 +88,7 @@ export default function Home() {
       <section>
         <div>voicevox web app (仮)</div>
         <div className="inputs">
-        <PullDownSpeacer changeChara={changeChara}></PullDownSpeacer>
+          <PullDownSpeacer changeChara={changeChara}></PullDownSpeacer>
           {/* <TextArea Text={setText}></TextArea> */}
           <textarea
             name="text"
